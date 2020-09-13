@@ -92,12 +92,33 @@ class SortingRobot:
         """
         return self._light == "ON"
 
+    def search_right(self):
+        # finding the smallest element
+        while self.can_move_right():
+            self.move_right()
+            #if found smaller than held swap
+            if self.compare_item() >= 1:
+                self.swap_item()
+
+        self.set_light_on()
+
+    def drop_item_left(self):
+        #move left to drop item if held
+        if self.compare_item() is None:
+            # swap and set the light to off
+            self.swap_item()
+            self.set_light_off()
+
+        # otherwise keep moving left
+        else:
+            self.move_left()
+
     def sort(self):
         """
         Sort the robot's list.
         """
         # Fill this out
-        pass
+        
 
 
 if __name__ == "__main__":
